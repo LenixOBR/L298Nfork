@@ -286,12 +286,22 @@ void L298NX2::backwardFor(unsigned long delay, CallBackFunction callback)
 }
 void L298NX2::spinABFor(unsigned long delay)
 {
-    this->runFor(delay, [this]() { this->spinAB(); });
+    _motorA.run(L298N::FORWARD);
+    _motorB.run(L298N::BACKWARD);
+
+    delayMicroseconds(delay * 1000); // Espera pelo tempo definido
+
+    this->stop(); // Para os motores após o tempo determinado
 }
 
 void L298NX2::spinBAFor(unsigned long delay)
 {
-    this->runFor(delay, [this]() { this->spinBA(); });
+    _motorA.run(L298N::BACKWARD);
+    _motorB.run(L298N::FORWARD);
+
+    delayMicroseconds(delay * 1000); // Espera pelo tempo definido
+
+    this->stop(); // Para os motores após o tempo determinado
 }
 void L298NX2::backwardFor(unsigned long delay)
 {
