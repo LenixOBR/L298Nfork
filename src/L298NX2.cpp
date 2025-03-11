@@ -292,7 +292,15 @@ void L298NX2::backwardFor(unsigned long delay, CallBackFunction callback)
 {
   this->runFor(delay, L298N::BACKWARD, callback);
 }
+void L298NX2::spinABFor(unsigned long delay)
+{
+    this->runFor(delay, [this]() { this->spinAB(); });
+}
 
+void L298NX2::spinBAFor(unsigned long delay)
+{
+    this->runFor(delay, [this]() { this->spinBA(); });
+}
 void L298NX2::backwardFor(unsigned long delay)
 {
   this->runFor(delay, L298N::BACKWARD);
