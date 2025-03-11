@@ -68,6 +68,10 @@ public:
    void runFor(unsigned long delay, L298N::Direction direction, CallBackFunction callback);
    void stop();
    void reset();
+   void spinAB();
+   void spinBA();
+   void spinABFor(unsigned long delay);
+   void spinBAFor(unsigned long delay);
 
 private:
    L298N _motorA;
